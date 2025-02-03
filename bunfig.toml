@@ -1,0 +1,14 @@
+name = "publication-ids"
+type = "module"
+
+[env]
+NODE_VERSION = "18"
+
+[test]
+# preload = './happydom.ts'
+coverage = true
+coverageThreshold = 0.95
+coverageReporter = ["text", "lcov"]
+
+[dependencies]
+# Add your dependencies here

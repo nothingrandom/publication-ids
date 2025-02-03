@@ -1,0 +1,52 @@
+{
+  "name": "publication-ids",
+  "version": "0.1.0",
+  "description": "Javascript / Typescript validator and parse for publication ids; DOI, PMID, PMCID, ISBN, and ISSN",
+  "license": "MIT",
+  "author": {
+    "name": "Benjamin Grant",
+    "email": "benjamin@nothingrandom.com",
+    "url": "https://begrant.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nothingrandom/publication-ids"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "doi",
+    "isbn",
+    "isbn10",
+    "isbn13",
+    "issn",
+    "pubmed",
+    "pmid",
+    "publication",
+    "validator",
+    "validate",
+    "validation",
+    "extract",
+    "parse",
+    "audit"
+  ],
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@stylistic/eslint-plugin": "^3.0.1",
+    "@types/bun": "latest",
+    "eslint": "^9.19.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^15.14.0",
+    "typescript-eslint": "^8.22.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit && eslint src"
+  }
+}
