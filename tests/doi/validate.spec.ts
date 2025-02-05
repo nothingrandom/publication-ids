@@ -9,4 +9,8 @@ describe('doi - validate', () => {
   test('should return false for an invalid string', () => {
     expect(validate('some other string')).toBeFalse();
   });
+
+  test('empty string', () => {
+    expect(validate('')).toBe(false);
+  });
 });

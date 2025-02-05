@@ -1,5 +1,11 @@
 import REGEX_ISBN from './regex';
 
+/**
+ * Sanitizes ISBN (International Standard Book Number) strings from the input.
+ *
+ * @param {string | string[]} input - The input string or array of strings to sanitize.
+ * @returns {string[]} An array of unique, sanitized ISBNs.
+ */
 export default (input: string | string[]): string[] => {
   if (!input) {
     return [];

@@ -1,5 +1,11 @@
 import REGEX_DOI from './regex';
 
+/**
+ * Sanitizes DOIs strings from the input
+ *
+ * @param {string | string[]} input - The input string or array of strings to sanitize.
+ * @returns {string[]} An array of unique, sanitized DOIs.
+ */
 export default (input: string | string[]): string[] => {
   if (!input) {
     return [];

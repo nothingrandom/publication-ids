@@ -16,6 +16,11 @@ describe('global - parse', () => {
     expect(result).toEqual([{ source: '10.1000/182', isValid: true, doi: '10.1000/182',  resolve: 'https://doi.org/10.1000/182', isbn: { isValid: false } }]);
   });
 
+  test('should return valid for string with a valid DOI', () => {
+    const result = parse('10.1000/182');
+    expect(result[0].source).toBe('10.1000/182');
+  });
+
   test('should return valid for array with a valid ISBN', () => {
     const result = parse(['978-3-16-148410-0']);
     expect(result).toEqual([{ source: '978-3-16-148410-0', isValid: true, isbn10: '3161484100', isbn13: '9783161484100' }]);

@@ -1,6 +1,12 @@
 import REGEX_ISBN from './regex';
 import sanitize from './sanitize';
 
+/**
+ * Validates an ISBN (International Standard Serial Number).
+ *
+ * @param {string} identifier - The ISBN to validate.
+ * @returns {boolean} `true` if the ISBN is valid, `false` otherwise.
+ */
 // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
 export default (identifier: string | undefined): boolean => {
   if (!identifier) {

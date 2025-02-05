@@ -12,7 +12,10 @@ npm install publication-ids
 import PublicationIds from 'publication-ids';
 
 // To guess the type of publication id, use the parse function.
-PublicationIds.parse('10.1234/5678').then(ids => ids.map(id => {
+// Parse will return an array of all possible publication ids that can be parsed from the input.
+// The input can be a string or an array of strings.
+const ids = PublicationIds.parse('10.1234/5678');
+ids.map(id => {
   console.log(id);
   /*
     {
@@ -24,7 +27,8 @@ PublicationIds.parse('10.1234/5678').then(ids => ids.map(id => {
   */
 });
 
-PublicationIds.doiParse('10.1234/5678').then(dois => dois.map(doi => {
+const dois = PublicationIds.doiParse('10.1234/5678')
+dois.map(doi => {
   console.log(doi);
   /*
     {
@@ -40,7 +44,8 @@ PublicationIds.doiParse('10.1234/5678').then(dois => dois.map(doi => {
     .then(response => response.ok)
 });
 
-PublicationIds.isbnParse('978-3-16-148410-0').then(isbns => isbns.map(isbn => {
+const isbns = PublicationIds.isbnParse('978-3-16-148410-0');
+isbns.map(isbn => {
   console.log(isbn);
   /*
     {
@@ -54,7 +59,8 @@ PublicationIds.isbnParse('978-3-16-148410-0').then(isbns => isbns.map(isbn => {
  // ISBNs can be validated without resolving them, due to a checksum in the ISBN.
 });
 
-PublicationIds.issnParse('0378-5955').then(issns => issns.map(issn => {
+const issns = PublicationIds.issnParse('0378-5955');
+issns.map(issn => {
   console.log(issn);
   /*
     {
@@ -68,7 +74,8 @@ PublicationIds.issnParse('0378-5955').then(issns => issns.map(issn => {
 });
 
 // PMIDs and PMCIDs can be parsed using the same function.
-PublicationIds.pmidParse('PMC123456').then(pmids => pmids.map(pmid => {
+const pmids = PublicationIds.pmidParse('PMC123456')
+pmids.map(pmid => {
   console.log(pmid);
   /*
     {

@@ -1,5 +1,11 @@
 import REGEX_ISSN from './regex';
 
+/**
+ * Sanitizes ISSN (International Standard Serial Number) strings from the input.
+ *
+ * @param {string | string[]} input - The input string or array of strings to sanitize.
+ * @returns {string[]} An array of unique, sanitized ISSNs.
+ */
 export default (input: string | string[]): string[] => {
   if (!input) {
     return [];

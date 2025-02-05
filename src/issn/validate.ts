@@ -1,6 +1,12 @@
 import REGEX_ISSN from './regex';
 import sanitize from './sanitize';
 
+/**
+ * Validates an ISSN (International Standard Serial Number).
+ *
+ * @param {string} identifier - The ISSN to validate.
+ * @returns {boolean} `true` if the ISSN is valid, `false` otherwise.
+ */
 export default (identifier: string | undefined): boolean => {
   if (!identifier) {
     return false;

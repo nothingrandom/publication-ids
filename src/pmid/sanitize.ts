@@ -1,5 +1,11 @@
 import { REGEX_PMID, REGEX_PMCID } from './regex';
 
+/**
+ * Sanitizes PubMed IDs (PMIDs) and PubMed Central IDs (PMCIDs) strings from the input
+ *
+ * @param {string | string[]} input - The input string or array of strings to sanitize.
+ * @returns {string[]} An array of unique, sanitized PMIDs and PMCIDs.
+ */
 export default (input: string | string[]): string[] => {
   if (!input) {
     return [];
