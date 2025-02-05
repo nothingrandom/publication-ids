@@ -9,7 +9,7 @@ npm install publication-ids
 
 ## Usage
 ```ts
-import { PublicationIds } from 'publication-ids';
+import PublicationIds from 'publication-ids';
 
 // To guess the type of publication id, use the parse function.
 PublicationIds.parse('10.1234/5678').then(ids => ids.map(id => {
