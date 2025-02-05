@@ -76,6 +76,9 @@ describe('doi - sanitize', () => {
   });
 
   test('should return falsy, no DOI provided', () => {
-    expect(sanitize(undefined)).toBeEmpty();
+    expect(sanitize(null)).toEqual([]);
+    expect(sanitize(undefined)).toEqual([]);
+    expect(sanitize('')).toEqual([]);
+    expect(sanitize([])).toEqual([]);
   });
 });

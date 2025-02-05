@@ -18,12 +18,12 @@ export default (source: string): ISBNParse[] => {
   }
 
   return sanitizedIsbns.map((sanitizedIsbn) => {
-    const valid = validateIsbn(sanitizedIsbn);
+    const isValid = validateIsbn(sanitizedIsbn);
 
     return {
       source,
-      isValid: valid,
-      ...valid && {
+      isValid,
+      ...isValid && {
         isbn10: sanitizedIsbn.length === 13 ? sanitizedIsbn.slice(3, 13) : sanitizedIsbn,
         isbn13: sanitizedIsbn.length === 10 ? `978${sanitizedIsbn}` : sanitizedIsbn,
       },

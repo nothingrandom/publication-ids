@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'bun:test';
 import validate from '../../src/isbn/validate';
-describe('ISBN - validate', () => {
+describe('isbn - validate', () => {
   test('valid ISBN-10 without hyphens', () => {
     expect(validate('0306406152')).toBe(true);
   });

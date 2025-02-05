@@ -5,10 +5,10 @@ export default (input: string | string[]): string[] => {
     return [];
   }
 
-  const doiRegex = new RegExp(REGEX_DOI);
+  const doiRegex = new RegExp(REGEX_DOI, 'gi');
   const inputString = Array.isArray(input) ? input.join(' ') : input;
   const decoded = decodeURIComponent(inputString);
-  const matches = decoded.match(doiRegex);
+  const matches = decoded.match(doiRegex)?.filter(Boolean);
 
   if (!matches) {
     return [];
@@ -49,6 +49,5 @@ export default (input: string | string[]): string[] => {
     return cleanDoi.toString().toLowerCase().trim();
   });
 
-  // remove duplicates using a Set
   return [...new Set(cleanDois)];
 };

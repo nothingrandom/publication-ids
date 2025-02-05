@@ -42,6 +42,9 @@ describe('isbn - sanitize', () => {
   });
 
   test('should return falsy, no ISBN provided', () => {
+    expect(sanitize(null)).toEqual([]);
     expect(sanitize(undefined)).toEqual([]);
+    expect(sanitize('')).toEqual([]);
+    expect(sanitize([])).toEqual([]);
   });
 });
