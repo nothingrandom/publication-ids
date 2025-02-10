@@ -5,6 +5,7 @@ const config: BuildConfig = {
   outdir: 'dist',
   target: 'node',
   splitting: true,
+  packages: 'external',
 }
 
 const esm = build({
