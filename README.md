@@ -12,7 +12,7 @@ npm install publication-ids
 import PublicationIds from 'publication-ids';
 
 // To guess the type of publication id, use the parse function.
-// Parse will return an array of all possible publication ids that can be parsed from the input.
+// Parse will return an **array** of all possible publication ids that can be parsed from the input.
 // The input can be a string or an array of strings.
 const ids = PublicationIds.parse('10.1234/5678');
 ids.map(id => {
