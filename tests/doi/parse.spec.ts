@@ -20,12 +20,12 @@ describe('doi - parse', () => {
   });
 
   test('should return valid DOI without ISBN and chapter', () => {
-    const result = parse('10.1000/xyz123');
+    const result = parse('10.48550/arXiv.2307.12108');
     expect(result).toEqual([{
-      source: '10.1000/xyz123',
-      doi: '10.1000/xyz123',
+      source: '10.48550/arXiv.2307.12108',
+      doi: '10.48550/arxiv.2307.12108',
       isValid: true,
-      resolve: 'https://doi.org/10.1000/xyz123',
+      resolve: 'https://doi.org/10.48550/arxiv.2307.12108',
       isbn: {
         isValid: false,
       },

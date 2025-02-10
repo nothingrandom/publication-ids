@@ -1,6 +1,6 @@
 {
   "name": "publication-ids",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Javascript / Typescript validator and parse for publication ids; DOI, PMID, PMCID, ISBN, and ISSN",
   "license": "MIT",
   "author": {
@@ -34,13 +34,17 @@
   "type": "module",
   "exports": {
     "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    "default": "./dist/index.js",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
   },
-  "main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "bin": {
+    "publication-ids": "./dist/cli.js"
+  },
   "sideEffects": false,
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -57,7 +61,10 @@
   },
   "scripts": {
     "build:pre": "bun run lint && bun test",
-    "build": "bun run build:pre && rm -rf dist && tsc --outDir dist --declaration --declarationDir dist",
+    "build": "rm -rf dist && bun run bun.build.ts && tsc --emitDeclarationOnly",
     "lint": "tsc --noEmit && eslint src"
+  },
+  "dependencies": {
+    "meow": "^13.2.0"
   }
 }
