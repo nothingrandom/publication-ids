@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  test:
+  build-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,4 +19,5 @@ jobs:
       - name: Publish
         env:
           BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun publish
