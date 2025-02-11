@@ -54,4 +54,12 @@ describe('global - parse', () => {
       { source: '0378-5955', isValid: true, issn: '03785955' }
     ]);
   });
+
+  test('should return mixed results for PMC ID that is also a ISSN', () => {
+    const result = parse('PMC11793961');
+    expect(result).toEqual([
+      { source: 'PMC11793961', isValid: true, issn: '11793961' },
+      { source: 'PMC11793961', isValid: true, pmcid: 'PMC11793961', pmid: undefined, resolve: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11793961/' },
+    ]);
+  })
 });
