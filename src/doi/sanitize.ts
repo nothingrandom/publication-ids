@@ -1,7 +1,5 @@
 import REGEX_DOI from './regex';
 
-const doiRegex = new RegExp(REGEX_DOI, 'gi');
-
 /**
  * Sanitizes DOIs strings from the input
  *
@@ -13,6 +11,7 @@ export default (input: string | string[]): string[] => {
     return [];
   }
 
+  const doiRegex = new RegExp(REGEX_DOI, 'gi');
   const inputString = Array.isArray(input) ? input.join(' ') : input;
   const decoded = decodeURIComponent(inputString);
   const matches = decoded.match(doiRegex)?.filter(Boolean);
