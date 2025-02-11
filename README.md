@@ -27,7 +27,7 @@ ids.map(id => {
   */
 });
 
-const dois = PublicationIds.doiParse('10.1234/5678')
+const dois = PublicationIds.parseDoi('10.1234/5678')
 dois.map(doi => {
   console.log(doi);
   /*
@@ -44,7 +44,7 @@ dois.map(doi => {
     .then(response => response.ok)
 });
 
-const isbns = PublicationIds.isbnParse('978-3-16-148410-0');
+const isbns = PublicationIds.parseIsbn('978-3-16-148410-0');
 isbns.map(isbn => {
   console.log(isbn);
   /*
@@ -59,7 +59,7 @@ isbns.map(isbn => {
  // ISBNs can be validated without resolving them, due to a checksum in the ISBN.
 });
 
-const issns = PublicationIds.issnParse('0378-5955');
+const issns = PublicationIds.parseIssn('0378-5955');
 issns.map(issn => {
   console.log(issn);
   /*
@@ -74,7 +74,7 @@ issns.map(issn => {
 });
 
 // PMIDs and PMCIDs can be parsed using the same function.
-const pmids = PublicationIds.pmidParse('PMC123456')
+const pmids = PublicationIds.parsePmid('PMC123456')
 pmids.map(pmid => {
   console.log(pmid);
   /*

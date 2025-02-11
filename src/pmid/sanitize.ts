@@ -1,5 +1,8 @@
 import { REGEX_PMID, REGEX_PMCID } from './regex';
 
+const pmidRegex = new RegExp(REGEX_PMID, 'gi');
+const pmcidRegex = new RegExp(REGEX_PMCID, 'gi');
+
 /**
  * Sanitizes PubMed IDs (PMIDs) and PubMed Central IDs (PMCIDs) strings from the input
  *
@@ -14,8 +17,8 @@ export default (input: string | string[]): string[] => {
   const inputString = Array.isArray(input) ? input.join(' ') : input;
   const decoded = decodeURIComponent(inputString);
 
-  const pmidMatches = decoded.match(new RegExp(REGEX_PMID, 'gi')) ?? [];
-  const pmcidMatches = decoded.match(new RegExp(REGEX_PMCID, 'gi')) ?? [];
+  const pmidMatches = decoded.match(pmidRegex) ?? [];
+  const pmcidMatches = decoded.match(pmcidRegex) ?? [];
 
   const matches = [...pmidMatches, ...pmcidMatches].filter(Boolean);
 

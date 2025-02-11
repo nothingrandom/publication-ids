@@ -1,6 +1,6 @@
 {
   "name": "publication-ids",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Javascript / Typescript validator and parse for publication ids; DOI, PMID, PMCID, ISBN, and ISSN",
   "license": "MIT",
   "author": {

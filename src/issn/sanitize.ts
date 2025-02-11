@@ -1,5 +1,6 @@
 import REGEX_ISSN from './regex';
 
+const issnRegex = new RegExp(REGEX_ISSN, 'gi');
 /**
  * Sanitizes ISSN (International Standard Serial Number) strings from the input.
  *
@@ -11,7 +12,6 @@ export default (input: string | string[]): string[] => {
     return [];
   }
 
-  const issnRegex = new RegExp(REGEX_ISSN, 'gi');
   const inputArray = Array.isArray(input) ? input : [...input.split(' '), input];
 
   const cleanIssns = inputArray.reduce<string[]>((acc, inputString) => {

@@ -1,48 +1,40 @@
 import parse from './global/parse';
 
-import doiParse from './doi/parse';
-import doiSanitize from './doi/sanitize';
-import doiValidate from './doi/validate';
+import parseDoi from './doi/parse';
+import sanitizeDoi from './doi/sanitize';
+import validateDoi from './doi/validate';
 
-import isbnParse from './isbn/parse';
-import isbnSanitize from './isbn/sanitize';
-import isbnValidate from './isbn/validate';
+import parseIsbn from './isbn/parse';
+import sanitizeIsbn from './isbn/sanitize';
+import validateIsbn from './isbn/validate';
 
-import issnParse from './issn/parse';
-import issnSanitize from './issn/sanitize';
-import issnValidate from './issn/validate';
+import parseIssn from './issn/parse';
+import sanitizeIssn from './issn/sanitize';
+import validateIssn from './issn/validate';
 
-import pmidParse from './pmid/parse';
-import pmidSanitize from './pmid/sanitize';
-import pmidValidate from './pmid/validate';
+import parsePmid from './pmid/parse';
+import sanitizePmid from './pmid/sanitize';
+import validatePmid from './pmid/validate';
 
-// the user can import the modules like this:
-// import { parse } from 'ids';
-// and use the functions like this:
-// parse('12345678');
-export { doiParse, doiSanitize, doiValidate };
-export { isbnParse, isbnSanitize, isbnValidate };
-export { issnParse, issnSanitize, issnValidate };
-export { pmidParse, pmidSanitize, pmidValidate };
+export { parseDoi, sanitizeDoi, validateDoi };
+export { parseIsbn, sanitizeIsbn, validateIsbn };
+export { parseIssn, sanitizeIssn, validateIssn };
+export { parsePmid, sanitizePmid, validatePmid };
 
 export { parse };
 
-// the module can also be imported like this:
-// import ids from 'ids';
-// and used like this:
-// ids.parse('12345678');
 export default {
-  doiParse,
-  doiSanitize,
-  doiValidate,
-  isbnParse,
-  isbnSanitize,
-  isbnValidate,
-  issnParse,
-  issnSanitize,
-  issnValidate,
-  pmidParse,
-  pmidSanitize,
-  pmidValidate,
+  parseDoi,
+  sanitizeDoi,
+  validateDoi,
+  parseIsbn,
+  sanitizeIsbn,
+  validateIsbn,
+  parseIssn,
+  sanitizeIssn,
+  validateIssn,
+  parsePmid,
+  sanitizePmid,
+  validatePmid,
   parse,
 };

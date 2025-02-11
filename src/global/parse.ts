@@ -1,11 +1,11 @@
-import doiParse, { type DoiParse } from '../doi/parse';
-import doiValidate from '../doi/validate';
-import isbnParse, { type ISBNParse } from '../isbn/parse';
-import isbnValidate from '../isbn/validate';
-import issnParse, { type ISSNParse } from '../issn/parse';
-import issnValidate from '../issn/validate';
-import pmidParse, { type PMIDParse } from '../pmid/parse';
-import pmidValidate from '../pmid/validate';
+import parseDoi, { type DoiParse } from '../doi/parse';
+import validateDoi from '../doi/validate';
+import parseIsbn, { type ISBNParse } from '../isbn/parse';
+import validateIsbn from '../isbn/validate';
+import parseIssn, { type ISSNParse } from '../issn/parse';
+import validateIssn from '../issn/validate';
+import parsePmid, { type PMIDParse } from '../pmid/parse';
+import validatePmid from '../pmid/validate';
 
 /**
  * Parses an input string or array of strings and returns an array of parsed identifiers.
@@ -20,14 +20,14 @@ export default (input: string | string[]): DoiParse[] & ISBNParse[] & ISSNParse[
   const inputArray = Array.isArray(input) ? input : [...input.split(' '), input];
 
   return inputArray.map((id) => {
-    if (doiValidate(id)) {
-      return doiParse(id);
-    } else if (isbnValidate(id)) {
-      return isbnParse(id);
-    } else if (issnValidate(id)) {
-      return issnParse(id);
-    } else if (pmidValidate(id)) {
-      return pmidParse(id);
+    if (validateDoi(id)) {
+      return parseDoi(id);
+    } else if (validateIsbn(id)) {
+      return parseIsbn(id);
+    } else if (validateIssn(id)) {
+      return parseIssn(id);
+    } else if (validatePmid(id)) {
+      return parsePmid(id);
     }
 
     return {

@@ -12,11 +12,13 @@ export interface DoiParse {
   };
 }
 
+const ISBN13_REGEX = /97[89][0-9]{10}/;
+
 /**
  * Parses a source string to extract and validate DOIs.
  *
  * @param {string | string[]} source - The source string or array of strings containing potential DOIs
- * @returns {DOIParse[]} An array of objects representing the parsed IDs, including their validity and resolution URLs.
+ * @returns {DoiParse[]} An array of objects representing the parsed IDs, including their validity and resolution URLs.
  *
  * @typedef {Object} DOIParse
  * @property {string | string[]} source - The original source string.
@@ -37,8 +39,9 @@ export default (source: string | string[]): DoiParse[] => {
 
   return sanitizedDois.map((sanitizedDoi, index) => {
     const isValid = validateDoi(sanitizedDoi);
-    const potentialIsbn = /97[89][0-9]{10}/.exec(sanitizedDoi)?.[0] ?? '';
+    const potentialIsbn = ISBN13_REGEX.exec(sanitizedDoi)?.[0] ?? '';
     const isbn = potentialIsbn ? parseIsbn(potentialIsbn)[0] : { isValid: false };
+    const resolve = isValid ? `https://doi.org/${sanitizedDoi}` : '';
 
     if (isbn.isValid) {
       const sourceArray = Array.isArray(source) ? source : source.split(' ');
@@ -48,7 +51,7 @@ export default (source: string | string[]): DoiParse[] => {
         source,
         doi: sanitizedDoi,
         isValid,
-        resolve: isValid ? `https://doi.org/${sanitizedDoi}` : '',
+        resolve,
         isbn: {
           ...isbn,
           chapter,
@@ -60,7 +63,7 @@ export default (source: string | string[]): DoiParse[] => {
       source,
       doi: sanitizedDoi,
       isValid,
-      resolve: isValid ? `https://doi.org/${sanitizedDoi}` : '',
+      resolve,
       isbn,
     };
   });

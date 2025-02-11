@@ -1,5 +1,7 @@
 import REGEX_DOI from './regex';
 
+const doiRegex = new RegExp(REGEX_DOI, 'gi');
+
 /**
  * Sanitizes DOIs strings from the input
  *
@@ -11,7 +13,6 @@ export default (input: string | string[]): string[] => {
     return [];
   }
 
-  const doiRegex = new RegExp(REGEX_DOI, 'gi');
   const inputString = Array.isArray(input) ? input.join(' ') : input;
   const decoded = decodeURIComponent(inputString);
   const matches = decoded.match(doiRegex)?.filter(Boolean);
@@ -47,13 +48,9 @@ export default (input: string | string[]): string[] => {
     '/pdf',
   ];
 
-  const cleanDois = matches.map((candidate) => {
-    const cleanDoi = badEndings.reduce((acc, badEnding) => {
-      return acc.toString().replace(badEnding, '');
-    }, candidate);
+  const badEndingsRegex = new RegExp(badEndings.map(ending => ending instanceof RegExp ? ending.source : ending.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'gi');
 
-    return cleanDoi.toString().toLowerCase().trim();
-  });
+  const cleanDois = matches.map(candidate => candidate.replace(badEndingsRegex, '').toLowerCase().trim());
 
   return [...new Set(cleanDois)];
 };

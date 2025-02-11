@@ -1,5 +1,7 @@
 import REGEX_ISBN from './regex';
 
+const isbnRegex = new RegExp(REGEX_ISBN);
+
 /**
  * Sanitizes ISBN (International Standard Book Number) strings from the input.
  *
@@ -11,7 +13,6 @@ export default (input: string | string[]): string[] => {
     return [];
   }
 
-  const isbnRegex = new RegExp(REGEX_ISBN);
   const inputArray = Array.isArray(input) ? input : [...input.split(' '), input];
 
   const cleanIsbns = inputArray.reduce<string[]>((acc, inputString) => {
