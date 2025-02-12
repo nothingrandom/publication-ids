@@ -1,4 +1,3 @@
-import REGEX_ISBN from './regex';
 import sanitize from './sanitize';
 
 /**
@@ -13,12 +12,13 @@ export default (identifier: string | undefined): boolean => {
     return false;
   }
 
-  if (!REGEX_ISBN.test(identifier)) {
+  const sanitized = sanitize(identifier);
+  if (!sanitized.length) {
     return false;
   }
 
   // Remove non ISBN digits, then split into an array
-  const chars = sanitize(identifier)[0].split('');
+  const chars = sanitized[0].split('');
   // Remove the final ISBN digit from `chars`, and assign it to `last`
   const last = chars.pop();
   let sum = 0;

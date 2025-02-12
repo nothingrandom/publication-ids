@@ -15,6 +15,7 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
+      - run: bun run build:pre
       - run: bun run build
       - name: Publish
         env:

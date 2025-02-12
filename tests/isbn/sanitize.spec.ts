@@ -32,6 +32,11 @@ describe('isbn - sanitize', () => {
     expect(sanitize('ISBN-13: 978-3-16-148410-0')).toEqual(['9783161484100']);
   });
 
+  test('should return valid ISBN, different hyphenation', () => {
+    expect(sanitize('978-1984880987')).toEqual(['9781984880987']);
+    expect(sanitize('9781984880987')).toEqual(['9781984880987']);
+  })
+
   test('should return falsy, not an ISBN', () => {
     expect(sanitize('some other string')).toEqual([]);
   });

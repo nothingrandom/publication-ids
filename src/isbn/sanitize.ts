@@ -16,7 +16,9 @@ export default (input: string | string[]): string[] => {
   const inputArray = Array.isArray(input) ? input : [...input.split(' '), input];
 
   const cleanIsbns = inputArray.reduce<string[]>((acc, inputString) => {
-    const matches = inputString.trim().match(isbnRegex)?.filter(Boolean);
+    // remove all hyphens
+    const cleanInput = inputString.replace(/-/g, '');
+    const matches = cleanInput.trim().match(isbnRegex)?.filter(Boolean);
 
     if (matches) {
       matches.forEach((candidate) => {

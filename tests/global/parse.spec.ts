@@ -22,8 +22,8 @@ describe('global - parse', () => {
   });
 
   test('should return valid for array with a valid ISBN', () => {
-    const result = parse(['978-3-16-148410-0']);
-    expect(result).toEqual([{ source: '978-3-16-148410-0', isValid: true, isbn10: '3161484100', isbn13: '9783161484100' }]);
+    const result = parse(['978-1984880987']);
+    expect(result).toEqual([{ source: '978-1984880987', isValid: true, isbn10: '1984880985', isbn13: '9781984880987' }]);
   });
 
   test('should return valid for array with a valid ISSN', () => {
@@ -37,10 +37,10 @@ describe('global - parse', () => {
   });
 
   test('should return multiple results for array with multiple valid IDs', () => {
-    const result = parse(['10.1000/182', '978-3-16-148410-0', '0378-5955', '12345678']);
+    const result = parse(['10.1000/182', '978-1984880987', '0378-5955', '12345678']);
     expect(result).toEqual([
       { source: '10.1000/182', isValid: true, doi: '10.1000/182', resolve: 'https://doi.org/10.1000/182', isbn: { isValid: false } },
-      { source: '978-3-16-148410-0', isValid: true, isbn10: '3161484100', isbn13: '9783161484100' },
+      { source: '978-1984880987', isValid: true, isbn10: '1984880985', isbn13: '9781984880987' },
       { source: '0378-5955', isValid: true, issn: '03785955' },
       { source: '12345678', isValid: true, pmid: '12345678', resolve: 'https://pubmed.ncbi.nlm.nih.gov/12345678/' }
     ]);

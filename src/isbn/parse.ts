@@ -1,3 +1,4 @@
+import { convertIsbn10ToIsbn13, convertIsbn13ToIsbn10 } from './convert';
 import sanitize from './sanitize';
 import validateIsbn from './validate';
 
@@ -36,8 +37,8 @@ export default (source: string | string[]): ISBNParse[] => {
       source,
       isValid,
       ...isValid && {
-        isbn10: sanitizedIsbn.length === 13 ? sanitizedIsbn.slice(3, 13) : sanitizedIsbn,
-        isbn13: sanitizedIsbn.length === 10 ? `978${sanitizedIsbn}` : sanitizedIsbn,
+        isbn10: sanitizedIsbn.length === 13 ? convertIsbn13ToIsbn10(sanitizedIsbn) : sanitizedIsbn,
+        isbn13: sanitizedIsbn.length === 10 ? convertIsbn10ToIsbn13(sanitizedIsbn) : sanitizedIsbn,
       },
     };
   });
