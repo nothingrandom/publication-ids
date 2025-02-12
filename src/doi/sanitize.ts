@@ -27,8 +27,6 @@ export default (input: string | string[]): string[] => {
     /\/asset\/.*/,
     // PubMed sometimes adds a dot at the end of the DOI
     /\.$/,
-    // some DOIs end with a - and numbers, dictating a chapter of an ebook
-    /-\d+$/,
     // other bad endings
     '.full.pdf',
     '.full.html',

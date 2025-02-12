@@ -37,19 +37,26 @@ export default (source: string | string[]): DoiParse[] => {
     }];
   }
 
-  return sanitizedDois.map((sanitizedDoi, index) => {
+  return sanitizedDois.map((sanitizedDoi) => {
     const isValid = validateDoi(sanitizedDoi);
-    const potentialIsbn = ISBN13_REGEX.exec(sanitizedDoi)?.[0] ?? '';
+    const potentialIsbnFragment = sanitizedDoi.replace(/-/g, '');
+    const potentialIsbn = ISBN13_REGEX.exec(potentialIsbnFragment)?.[0] ?? '';
     const isbn = potentialIsbn ? parseIsbn(potentialIsbn)[0] : { isValid: false };
-    const resolve = isValid ? `https://doi.org/${sanitizedDoi}` : '';
 
     if (isbn.isValid) {
-      const sourceArray = Array.isArray(source) ? source : source.split(' ');
-      const chapter = sourceArray[index].split('-')[1] ?? '';
+      const [doiWithoutChapter, chapter] = sanitizedDoi.split(/[-_]/).reduce<[string, string | undefined]>((acc, part, index, array) => {
+        if (index === array.length - 1 && /^\d+$/.test(part) && /10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/.test(acc[0])) {
+          acc[1] = part;
+        } else {
+          acc[0] += (acc[0] ? '-' : '') + part;
+        }
+        return acc;
+      }, ['', undefined]);
+      const resolve = isValid ? `https://doi.org/${doiWithoutChapter}` : '';
 
       return {
         source,
-        doi: sanitizedDoi,
+        doi: doiWithoutChapter,
         isValid,
         resolve,
         isbn: {
@@ -58,6 +65,8 @@ export default (source: string | string[]): DoiParse[] => {
         },
       };
     }
+
+    const resolve = isValid ? `https://doi.org/${sanitizedDoi}` : '';
 
     return {
       source,
