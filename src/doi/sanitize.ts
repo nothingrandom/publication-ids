@@ -43,11 +43,24 @@ export default (input: string | string[]): string[] => {
     '/full/html',
     '/html/full',
     '/pdf',
+    '/endnote',
+    '/reference',
+    '/epub',
+    '/text',
+    '/bibtext',
   ];
 
-  const badEndingsRegex = new RegExp(badEndings.map(ending => ending instanceof RegExp ? ending.source : ending.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'gi');
-
-  const cleanDois = matches.map(candidate => candidate.replace(badEndingsRegex, '').toLowerCase().trim());
+  const cleanDois = matches.map((candidate) => {
+    let cleanDoi = candidate.toLowerCase().trim();
+    badEndings.forEach((ending) => {
+      if (ending instanceof RegExp) {
+        cleanDoi = cleanDoi.replace(ending, '');
+      } else if (cleanDoi.endsWith(ending)) {
+        cleanDoi = cleanDoi.slice(0, -ending.length);
+      }
+    });
+    return cleanDoi;
+  });
 
   return [...new Set(cleanDois)];
 };

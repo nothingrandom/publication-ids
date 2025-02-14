@@ -37,11 +37,19 @@ describe('doi - sanitize', () => {
   test('should just return a valid DOI, keeping bad endings within the DOI', () => {
     const doi = '10.1234/56pdf78';
     expect(sanitize(doi)).toEqual([doi]);
+
+    const doi2 = '10.1234/pdf5678';
+    expect(sanitize(doi2)).toEqual([doi2]);
   });
 
   test('should return valid DOI, trimming bad endings', () => {
     const doi = '10.1234/abcd';
     expect(sanitize('10.1234/abcd/pdf')).toEqual([doi]);
+    expect(sanitize('10.1234/abcd/reference')).toEqual([doi]);
+    expect(sanitize('10.1234/abcd/endnote')).toEqual([doi]);
+    expect(sanitize('10.1234/abcd/epub')).toEqual([doi]);
+    expect(sanitize('10.1234/abcd/text')).toEqual([doi]);
+    expect(sanitize('10.1234/abcd/bibtext')).toEqual([doi]);
     expect(sanitize('10.1234/abcd/full')).toEqual([doi]);
     expect(sanitize('10.1234/abcd/html/full')).toEqual([doi]);
     expect(sanitize('10.1234/abcd.pdf')).toEqual([doi]);
