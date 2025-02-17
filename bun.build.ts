@@ -6,18 +6,19 @@ const config: BuildConfig = {
   target: 'node',
   splitting: true,
   packages: 'external',
-}
+};
 
 const esm = build({
   ...config,
   entrypoints: [...config.entrypoints, 'src/cli.ts'],
   format: 'esm',
+  naming: '[dir]/[name].js',
 });
 
 const cjs = build({
   ...config,
   format: 'cjs',
-  naming: "[dir]/[name].cjs"
+  naming: '[dir]/[name].cjs',
 });
 
-await [esm, cjs];
+await Promise.all([esm, cjs]);

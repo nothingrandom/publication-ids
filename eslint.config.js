@@ -14,8 +14,11 @@ export default tseslint.config(
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        projectService: true,
         tsconfigRootDir: import.meta.dirname,
+        projectService: {
+          loadTypeScriptPlugins: true,
+          allowDefaultProject: ['*.ts', '*.js'],
+        },
       },
     },
     settings: {

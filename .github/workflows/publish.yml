@@ -14,9 +14,12 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - run: bun install
-      - run: bun run build:pre
-      - run: bun run build
+      - name: Install deps
+        run: bun install
+      - name: Build
+        run: |
+          bun run build:pre
+          bun run build
       - name: Publish
         env:
           BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
