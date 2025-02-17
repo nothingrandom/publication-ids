@@ -20,6 +20,6 @@ jobs:
       - name: Install deps
         run: bun install
       - name: Run tests
-        run: bun run test
+        run: bun test
       - name: Lint
         run: bun run lint
